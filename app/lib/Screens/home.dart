@@ -1,4 +1,6 @@
 import 'package:app/Screens/viewall.dart';
+import 'package:app/repository/auth_repository.dart';
+import 'package:app/repository/post_repository.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -21,6 +23,16 @@ class _HomeState extends State<Home> {
 
     // Optional: handle navigation logic here
     // For example: navigate to different screens or update content
+  }
+
+  void initialise() async {
+    await AuthRepository().signup("dev@gmail.com", "password", 0, "user", 0);
+  }
+
+  initState() {
+    super.initState();
+    initialise(); // Call the function to fetch posts
+    // Initialize any data or state here if needed
   }
 
   @override
@@ -51,14 +63,8 @@ class _HomeState extends State<Home> {
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-               title: Text('Home')
-              ),
-            ListTile(
-              leading: Icon(Icons.info),
-               title: Text('About')
-              ),
+            ListTile(leading: Icon(Icons.home), title: Text('Home')),
+            ListTile(leading: Icon(Icons.info), title: Text('About')),
             ListTile(
               leading: Icon(Icons.electrical_services),
               title: Text('Services'),
@@ -67,12 +73,8 @@ class _HomeState extends State<Home> {
               leading: Icon(Icons.contact_emergency),
               title: Text('Contact'),
             ),
-            ListTile(leading: Icon(Icons.settings),
-             title: Text('Setting')
-            ),
-            ListTile(leading: Icon(Icons.help),
-             title: Text('Help')
-            ),
+            ListTile(leading: Icon(Icons.settings), title: Text('Setting')),
+            ListTile(leading: Icon(Icons.help), title: Text('Help')),
           ],
         ),
       ),
@@ -244,7 +246,6 @@ class _HomeState extends State<Home> {
                     padding: const EdgeInsets.symmetric(horizontal: 0),
                     itemCount: 4,
                     itemBuilder: (context, index) {
-                      
                       return Container(
                         height: 200,
                         width: 150,
@@ -270,7 +271,7 @@ class _HomeState extends State<Home> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
-          
+
                               // Text at bottom-left
                               Positioned(
                                 bottom: 12,
@@ -309,7 +310,10 @@ class _HomeState extends State<Home> {
                   children: [
                     Text(
                       'Recent',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     TextButton(
                       onPressed: () {
@@ -369,7 +373,7 @@ class _HomeState extends State<Home> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
-          
+
                               // Text at bottom-left
                               Positioned(
                                 bottom: 12,

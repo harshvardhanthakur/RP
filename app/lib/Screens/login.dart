@@ -36,14 +36,18 @@ class _LogInPageState extends State<LogInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         
-        
-        body: Container(
-          decoration:const BoxDecoration(
-          image:DecorationImage(
-            image: AssetImage('assets/images/log_in_screen.png'),
-            fit: BoxFit.cover),
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children:[
+            Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/log_in_screen.png'),
+              fit: BoxFit.cover,
             ),
-          child: Padding(
+          ),
+        ), 
+          Padding(
             padding: const EdgeInsets.all(30),
             
             child: Column(
@@ -149,6 +153,6 @@ class _LogInPageState extends State<LogInPage> {
               ],
             ),
           ),
-        ));
+        ]));
   }
 }

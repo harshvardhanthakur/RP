@@ -30,7 +30,7 @@ class _ViewallState extends State<Viewall> {
     leading: IconButton(
       icon: Icon(Icons.menu, color: Colors.white, size: 40),
       onPressed: () {
-        
+        _scaffoldKey.currentState?.openDrawer();
       },
     ),
     centerTitle: true,
@@ -56,8 +56,24 @@ class _ViewallState extends State<Viewall> {
           title: Text('Home'),
         ),
         ListTile(
+          leading: Icon(Icons.info),
+          title: Text('About'),
+        ),
+        ListTile(
+          leading: Icon(Icons.electrical_services),
+          title: Text('Services'),
+        ),
+        ListTile(
+          leading: Icon(Icons.contact_emergency),
+          title: Text('Contact'),
+        ),
+        ListTile(
           leading: Icon(Icons.settings),
           title: Text('Settings'),
+        ),
+        ListTile(
+          leading: Icon(Icons.help),
+          title: Text('Help'),
         ),
       ],
     ),
@@ -119,63 +135,70 @@ class _ViewallState extends State<Viewall> {
     const SizedBox(height: 20),
 
     Expanded(
-      child: ListView.builder(
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return Card(
-            color: Colors.white,
-            margin: const EdgeInsets.only(bottom: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+  child: ListView.builder(
+    itemCount: 6,
+    itemBuilder: (context, index) {
+      return Card(
+        color: Colors.white,
+        margin: const EdgeInsets.only(bottom: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 4,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // 📷 Image on top
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
+              child: Image.asset(
+                'assets/images/white_p.png', // or your card image
+                height: 50,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-            elevation: 4,
+            // 📝 Title and Subtitle
             
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
-                  leading: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Icon(Icons.image, color: Color.fromRGBO(67, 56, 202, 1)),
-                  ),
-                  title: const Text("Rentpromts"),
-                  subtitle: const Text("Location"),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.share),
-                    onPressed: () {},
-                  ),
+            const SizedBox(height: 8),
+            // 📊 Bottom Horizontal Bar
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(240, 240, 255, 1),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Left side content
+                  const Text(
+                    'RentPrompts', 
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  // Right side: ⭐ + number
+                  Row(
                     children: const [
                       Icon(Icons.star, color: Colors.amber),
-                      Text('3'),
+                      SizedBox(width: 4),
+                      Text('4.5', style: TextStyle(fontSize: 16)),
                     ],
                   ),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
-                  ),
-                  
-                ),
-              ],
+                ],
+              ),
             ),
-          );
-        },
-      ),
-    ),
+          ],
+        ),
+      );
+    },
+  ),
+),
   ],
 )
       )

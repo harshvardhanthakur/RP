@@ -26,7 +26,7 @@ class Entryscreen extends StatelessWidget {
             ),
             const Align(
               alignment: Alignment.topLeft,
-              child: Image(image: AssetImage('assets/images/white_p.png'),height: 90, width: 60,),
+              child: Image(image: AssetImage('assets/images/white_p.png'),height: 100, width: 60,),
             ),
             const Spacer(),
             const Align(

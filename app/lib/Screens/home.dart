@@ -2,6 +2,7 @@ import 'package:app/Screens/viewall.dart';
 import 'package:app/repository/auth_repository.dart';
 import 'package:app/repository/post_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:app/Screens/profile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -65,14 +66,8 @@ class _HomeState extends State<Home> {
             ),
             ListTile(leading: Icon(Icons.home), title: Text('Home')),
             ListTile(leading: Icon(Icons.info), title: Text('About')),
-            ListTile(
-              leading: Icon(Icons.electrical_services),
-              title: Text('Services'),
-            ),
-            ListTile(
-              leading: Icon(Icons.contact_emergency),
-              title: Text('Contact'),
-            ),
+            ListTile(leading: Icon(Icons.electrical_services),title: Text('Services')),
+            ListTile(leading: Icon(Icons.contact_emergency),title: Text('Contact')),
             ListTile(leading: Icon(Icons.settings), title: Text('Setting')),
             ListTile(leading: Icon(Icons.help), title: Text('Help')),
           ],
@@ -146,7 +141,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Color.fromRGBO(67, 56, 202, 1),
+                          backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -162,7 +157,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Color.fromRGBO(67, 56, 202, 1),
+                          backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -178,7 +173,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Color.fromRGBO(67, 56, 202, 1),
+                          backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -194,7 +189,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Color.fromRGBO(67, 56, 202, 1),
+                          backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -210,7 +205,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Color.fromRGBO(67, 56, 202, 1),
+                          backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -226,7 +221,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Color.fromRGBO(67, 56, 202, 1),
+                          backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -414,11 +409,8 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile') ,
         ],
       ),
     );

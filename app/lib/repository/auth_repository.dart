@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRepository {
@@ -6,21 +7,16 @@ class AuthRepository {
 
   AuthRepository();
 
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<UserModel?> login(String email, String password) async {
     try {
       final response = await http.post(
         Uri.parse('$domainName/api/users/login'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-        }),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'email': email, 'password': password}),
       );
 
       if (response.statusCode == 200) {
-        return jsonDecode(response.body);
+        return UserModel.fromJson(jsonDecode(response.body)["doc"]);
       } else {
         throw Exception('Failed to login: ${response.body}');
       }
@@ -29,13 +25,17 @@ class AuthRepository {
     }
   }
 
-  Future<Map<String, dynamic>> signup(String email, String password, int coinBalance, String role, int tokens) async {
+  Future<UserModel?> signup(
+    String email,
+    String password,
+    int coinBalance,
+    String role,
+    int tokens,
+  ) async {
     try {
       final response = await http.post(
         Uri.parse('$domainName/api/users'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -47,11 +47,11 @@ class AuthRepository {
 
       print(response.statusCode);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         print('Signup response: ${response.body}');
-        return jsonDecode(response.body);
+        return UserModel.fromJson(jsonDecode(response.body)["doc"]);
       } else {
-        throw Exception('Failed to signup: ${response.body}');
+        return null;
       }
     } catch (err) {
       throw Exception('Error during signup: $err');

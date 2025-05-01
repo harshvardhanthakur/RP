@@ -26,9 +26,7 @@ class _HomeState extends State<Home> {
     // For example: navigate to different screens or update content
   }
 
-  void initialise() async {
-    await AuthRepository().signup("dev@gmail.com", "password", 0, "user", 0);
-  }
+  void initialise() async {}
 
   initState() {
     super.initState();
@@ -66,8 +64,14 @@ class _HomeState extends State<Home> {
             ),
             ListTile(leading: Icon(Icons.home), title: Text('Home')),
             ListTile(leading: Icon(Icons.info), title: Text('About')),
-            ListTile(leading: Icon(Icons.electrical_services),title: Text('Services')),
-            ListTile(leading: Icon(Icons.contact_emergency),title: Text('Contact')),
+            ListTile(
+              leading: Icon(Icons.electrical_services),
+              title: Text('Services'),
+            ),
+            ListTile(
+              leading: Icon(Icons.contact_emergency),
+              title: Text('Contact'),
+            ),
             ListTile(leading: Icon(Icons.settings), title: Text('Setting')),
             ListTile(leading: Icon(Icons.help), title: Text('Help')),
           ],
@@ -409,8 +413,11 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile') ,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );

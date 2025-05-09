@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
+
 class AuthRepository {
-  final String domainName = "https://rentprompts.com";
+  final String domainName = "https://beta.rentprompts.com";
 
   AuthRepository();
 
@@ -14,7 +15,7 @@ class AuthRepository {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
-
+      
       if (response.statusCode == 200) {
         return UserModel.fromJson(jsonDecode(response.body)["doc"]);
       } else {

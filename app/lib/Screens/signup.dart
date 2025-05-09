@@ -94,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Create \nAccount',
+                  'Create \n Account',
                   style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
               ),

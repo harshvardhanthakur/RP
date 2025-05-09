@@ -2,6 +2,8 @@
 import 'package:app/Screens/home.dart';
 import 'package:app/Screens/signup.dart';
 import 'package:app/common.dart';
+import 'package:app/models/user_model.dart';
+import 'package:app/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 
@@ -30,6 +32,43 @@ class _LogInPageState extends State<LogInPage> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+  }
+
+  void onTap() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+    user = await AuthRepository().login(
+      _emailController.text,
+      _passwordController.text,
+      
+    );
+    if (user != null) {
+      Navigator.of(context).pop(); // Close the loading dialog
+      print("User created successfully: ${user?.toJson()}");
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('LogIn Success')));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const Home();
+          },
+        ),
+      );
+    } else {
+      // Handle signup error
+      Navigator.of(context).pop(); // Close the loading dialog
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('LogIn failed')));
+    }
   }
 
   @override
@@ -117,7 +156,7 @@ class _LogInPageState extends State<LogInPage> {
                 const SizedBox(
                   height: 30,
                 ),
-                bluebutton("Login", () {}),
+                bluebutton("Login", onTap),
                 const SizedBox(
                   height: 20,
                 ),

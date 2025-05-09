@@ -3,6 +3,7 @@ import 'package:app/repository/auth_repository.dart';
 import 'package:app/repository/post_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Screens/profile.dart';
+import 'package:app/Screens/info.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,12 +19,18 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0; // Track the current tab index
 
   void _onItemTapped(int index) {
+    if (index == 2) {
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Profile()),
+    );
+  } else {
+    
     setState(() {
       _selectedIndex = index;
     });
-
-    // Optional: handle navigation logic here
-    // For example: navigate to different screens or update content
+  }
   }
 
   void initialise() async {}
@@ -37,6 +44,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(67, 56, 202, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(67, 56, 202, 1), // or your custom color
         elevation: 0, // removes shadow
@@ -64,14 +72,8 @@ class _HomeState extends State<Home> {
             ),
             ListTile(leading: Icon(Icons.home), title: Text('Home')),
             ListTile(leading: Icon(Icons.info), title: Text('About')),
-            ListTile(
-              leading: Icon(Icons.electrical_services),
-              title: Text('Services'),
-            ),
-            ListTile(
-              leading: Icon(Icons.contact_emergency),
-              title: Text('Contact'),
-            ),
+            ListTile(leading: Icon(Icons.electrical_services),title: Text('Services')),
+            ListTile(leading: Icon(Icons.contact_emergency),title: Text('Contact')),
             ListTile(leading: Icon(Icons.settings), title: Text('Setting')),
             ListTile(leading: Icon(Icons.help), title: Text('Help')),
           ],
@@ -145,13 +147,16 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Color.fromRGBO(79, 70, 229, 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text('Home'),
                       ),
+
+                      SizedBox(width: 10),
+
                       TextButton(
                         onPressed: () => print('About pressed'),
                         style: TextButton.styleFrom(
@@ -161,13 +166,16 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Color.fromRGBO(79, 70, 229, 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text('About'),
                       ),
+
+                      SizedBox(width: 10),
+
                       TextButton(
                         onPressed: () => print('Services pressed'),
                         style: TextButton.styleFrom(
@@ -177,13 +185,16 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Color.fromRGBO(79, 70, 229, 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text('Services'),
                       ),
+
+                      SizedBox(width: 10),
+
                       TextButton(
                         onPressed: () => print('Contact pressed'),
                         style: TextButton.styleFrom(
@@ -193,13 +204,16 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Color.fromRGBO(79, 70, 229, 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text('Contact'),
                       ),
+
+                      SizedBox(width: 10),
+
                       TextButton(
                         onPressed: () => print('Blog pressed'),
                         style: TextButton.styleFrom(
@@ -209,13 +223,16 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Color.fromRGBO(79, 70, 229, 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text('Blog'),
                       ),
+
+                      SizedBox(width: 10),
+
                       TextButton(
                         onPressed: () => print('Help pressed'),
                         style: TextButton.styleFrom(
@@ -225,9 +242,9 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 16),
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: Color.fromRGBO(79, 70, 229, 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text('Help'),
@@ -413,10 +430,7 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),

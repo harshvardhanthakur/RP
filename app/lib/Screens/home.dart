@@ -4,6 +4,7 @@ import 'package:app/repository/post_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Screens/profile.dart';
 import 'package:app/Screens/info.dart';
+import 'package:app/Screens/detail.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,17 +21,20 @@ class _HomeState extends State<Home> {
 
   void _onItemTapped(int index) {
     if (index == 2) {
-    
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const Profile()),
-    );
-  } else {
-    
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Profile()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Detail()),
+      );
+    } else {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   void initialise() async {}
@@ -72,8 +76,14 @@ class _HomeState extends State<Home> {
             ),
             ListTile(leading: Icon(Icons.home), title: Text('Home')),
             ListTile(leading: Icon(Icons.info), title: Text('About')),
-            ListTile(leading: Icon(Icons.electrical_services),title: Text('Services')),
-            ListTile(leading: Icon(Icons.contact_emergency),title: Text('Contact')),
+            ListTile(
+              leading: Icon(Icons.electrical_services),
+              title: Text('Services'),
+            ),
+            ListTile(
+              leading: Icon(Icons.contact_emergency),
+              title: Text('Contact'),
+            ),
             ListTile(leading: Icon(Icons.settings), title: Text('Setting')),
             ListTile(leading: Icon(Icons.help), title: Text('Help')),
           ],
@@ -121,19 +131,23 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(2),
                         decoration: const BoxDecoration(
-                          color: Color.fromRGBO(67, 56, 202, 1),
+                          color: Colors.white,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.search, color: Colors.white),
+                        child: const Icon(
+                          Icons.search,
+                          color: Color.fromRGBO(79, 70, 229, 1),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -259,13 +273,13 @@ class _HomeState extends State<Home> {
                 child: Center(
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     itemCount: 4,
                     itemBuilder: (context, index) {
                       return Container(
                         height: 200,
                         width: 150,
-                        margin: const EdgeInsets.only(right: 16),
+                        margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
@@ -361,13 +375,13 @@ class _HomeState extends State<Home> {
                 child: Center(
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     itemCount: 4,
                     itemBuilder: (context, index) {
                       return Container(
                         height: 200,
                         width: 150,
-                        margin: const EdgeInsets.only(right: 16),
+                        margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
@@ -430,7 +444,10 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:app/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
-
 class AuthRepository {
   final String domainName = "https://beta.rentprompts.com";
 
@@ -10,12 +9,16 @@ class AuthRepository {
 
   Future<UserModel?> login(String email, String password) async {
     try {
+      print(email);
+      print(password);
       final response = await http.post(
         Uri.parse('$domainName/api/users/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
-      
+      print('🟢 Response Status Code: ${response.statusCode}');
+      print('🟢 Response Body: ${response.body}');
+
       if (response.statusCode == 200) {
         return UserModel.fromJson(jsonDecode(response.body)["doc"]);
       } else {
@@ -34,6 +37,7 @@ class AuthRepository {
     int tokens,
   ) async {
     try {
+      print(password);
       final response = await http.post(
         Uri.parse('$domainName/api/users'),
         headers: {'Content-Type': 'application/json'},
